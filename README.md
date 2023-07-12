@@ -1,44 +1,48 @@
-# Enhancing Pseudo Label Quality for Semi-Supervised Domain-Generalized Medical Image Segmentation(AAAI 2022)
-PyTorch implementation of Enhancing Pseudo Label Quality for Semi-Supervised Domain-Generalized Medical Image Segmentation.
-Huifeng Yao, Xiaowei Hu, Xiaomeng Li
+# Variance-Aware Domain-Augmented Pseudo Labeling for Semi-Supervised Domain Generalization on Medical Image Segmentation
+PyTorch implementation of Variance-Aware Domain-Augmented Pseudo Labeling for Semi-Supervised Domain Generalization on Medical Image Segmentation.
+Huifeng Yao, Weihang Dai, Xiaowei Hu, Xiaowei Xu, Xiaomeng Li
 
-Architecture:
+<!-- Architecture:
 - configs (config file)
 - inference_mms.py(inference file for M&Ms dataset)
 - inference_scgm.py(inference file for SCGM dataset)
 - mms_dataloader.py(dataloader for M&Ms dataset)
 - scgm_dataloader.py(dataloader for SCGM dataset)
 - mms_train.py(train file for M&Ms dataset)
-- scgm_train.py(train file for SCGM dataset)
+- scgm_train.py(train file for SCGM dataset) -->
 
 ## Preparation
-```
-conda env create -f semidg.yaml
-```
-### Dependencies
-
 ### Datasets
 
 * We followed the setting of [Semi-supervised Meta-learning with Disentanglement for Domain-generalised Medical Image Segmentation](https://arxiv.org/abs/2106.13292).
 * We used two datasets in this paper: [Multi-Centre, Multi-Vendor & Multi-Disease Cardiac Image Segmentation Challenge (M&Ms) datast ](https://www.ub.edu/mnms/) and [Spinal cord grey matter segmentation challenge dataset](http://niftyweb.cs.ucl.ac.uk/challenge/index.php)
-### preprocessing
+### Preprocessing
 
 We followed the preprocessing of [Semi-supervised Meta-learning with Disentanglement for Domain-generalised Medical Image Segmentation](https://arxiv.org/abs/2106.13292), you can find the preprocessing code [here](https://github.com/xxxliu95/DGNet).
+After that, you should change the data directories in the dataloader(mms_dataloader or scgm_dataloader) file.
 
 ### Environments
-We use [wandb](https://wandb.ai/site) to visulize our results.
+We use [wandb](https://wandb.ai/site) to visulize our results. If you want to use this, you may need register an account first.
 
+Use this command to install the environments.
+```
+conda env create -f VDPL_environment.yaml
+```
 ## How to Run
-### Pretrain backbone
-We use the resnet-50 as our backbone and it is pretrained on Imagenet. You can download this [here](https://gohkust-my.sharepoint.com/:f:/g/personal/eehfyao_ust_hk/Ev1oSK0aoDROv9PkfQ7JY0YBGE-QhOslaKCLL6GT_u417A?e=cLU6gr).
 
 ### Training
+If you want to train the model on M&Ms dataset, you can use this command. You can find the config information in config/mms.yaml.
+```
+bash mms_run.sh
+```
+
+### Evaluate
+If you want to evaluate our models on M&Ms dataset, you can use this command. And you should change the model name(line 320 and 321) and the test_vendor(line 318) to load different models.
+```
+python inference_mms.py
+```
 
 
 ## Main Results
-![result](https://cdn.jsdelivr.net/gh/nekomiao123/pic/img/image-20211214221722454.png)
 
 ## Citation
-
-
-## License
