@@ -49,12 +49,8 @@ def run_with_mixstyle(model, mix=None):
     finally:
         model.apply(deactivate_mixstyle)
 
-
+# add our method based on Mistyle
 class MixStyle(nn.Module):
-    """MixStyle.
-    Reference:
-      Zhou et al. Domain Generalization with MixStyle. ICLR 2021.
-    """
 
     def __init__(self, p=0.5, alpha=0.1, eps=1e-6, mix="random", norm_type='random', fourier_type='AM', fourier=True):
         """
